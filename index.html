@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Junas Archive</title>
+    <link rel="shortcut icon" href="./books.png" type="image/x-icon">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@800;900&display=swap');
 
         * {
             margin: 0;
@@ -15,25 +16,12 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Rajdhani', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: #000000;
             position: relative;
             overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("bg.webp");
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1;
-            z-index: 0;
+            color: #fff;
         }
 
         .animated-bg {
@@ -44,14 +32,16 @@
             height: 100%;
             z-index: 0;
             overflow: hidden;
+            background: radial-gradient(ellipse at center, #1a0033 0%, #000000 70%);
         }
 
         .bubble {
             position: absolute;
             bottom: -100px;
-            background: rgba(255, 255, 255, 0.1);
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.1) 50%, transparent 100%);
             border-radius: 50%;
             animation: rise 15s infinite ease-in;
+            filter: blur(3px);
         }
 
         .bubble:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
@@ -64,13 +54,61 @@
             to {
                 bottom: 110%;
                 transform: translateX(50px);
+                opacity: 0;
             }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 40%; left: 30%; animation-delay: 0.5s; }
+        .particle:nth-child(3) { top: 60%; left: 50%; animation-delay: 1s; }
+        .particle:nth-child(4) { top: 30%; left: 70%; animation-delay: 1.5s; }
+        .particle:nth-child(5) { top: 80%; left: 85%; animation-delay: 2s; }
+        .particle:nth-child(6) { top: 15%; left: 45%; animation-delay: 2.5s; }
+        .particle:nth-child(7) { top: 70%; left: 20%; animation-delay: 1.2s; }
+        .particle:nth-child(8) { top: 50%; left: 80%; animation-delay: 1.8s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px #00ffff; }
+        }
+
+        .scan-line {
+            position: fixed;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            animation: scan 4s linear infinite;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        @keyframes scan {
+            from { top: 0; }
+            to { top: 100%; }
         }
 
         .container {
             position: relative;
             z-index: 1;
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
             padding: 3rem 2rem;
             min-height: 100vh;
@@ -80,212 +118,132 @@
 
         .header {
             text-align: center;
-            margin-bottom: 4rem;
-            animation: fadeInDown 1s ease;
+            margin-bottom: 5rem;
+            animation: fadeInDown 1.2s ease;
+            position: relative;
+        }
+
+        .title-wrapper {
+            position: relative;
+            display: inline-block;
         }
 
         .title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 10vw, 6rem);
+            font-family: 'Exo 2', sans-serif;
+            font-size: clamp(3rem, 10vw, 7rem);
             font-weight: 900;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-            margin-bottom: 1rem;
-            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 15px;
+            text-transform: uppercase;
+            position: relative;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .title::before,
+        .title::after {
+            content: 'JUNAS ARCHIVE';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+        .title::before {
+            color: #00ffff;
+            animation: glitch1 2s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        }
+
+        .title::after {
+            color: #ff00ff;
+            animation: glitch2 2s infinite;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitch1 {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(-2px, 0); }
+            66% { transform: translate(2px, 0); }
+        }
+
+        @keyframes glitch2 {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(2px, 0); }
+            66% { transform: translate(-2px, 0); }
         }
 
         .subtitle {
             font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 300;
-            letter-spacing: 2px;
+            color: #00ffff;
+            font-weight: 500;
+            letter-spacing: 6px;
             text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding: 0 2rem;
+        }
+
+        .subtitle::before,
+        .subtitle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff);
+        }
+
+        .subtitle::before {
+            right: 100%;
+            margin-right: 1rem;
+        }
+
+        .subtitle::after {
+            left: 100%;
+            margin-left: 1rem;
+            background: linear-gradient(90deg, #00ffff, transparent);
         }
 
         .timeline-container {
             flex: 1;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
         }
 
-        .level-section {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            animation: slideIn 0.8s ease backwards;
-        }
-
-        .level-section:nth-child(1) { animation-delay: 0.1s; }
-        .level-section:nth-child(2) { animation-delay: 0.2s; }
-        .level-section:nth-child(3) { animation-delay: 0.3s; }
-        .level-section:nth-child(4) { animation-delay: 0.4s; }
-
-        .level-section:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .level-badge {
-            flex-shrink: 0;
-            width: 120px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        .level-card {
+            background: linear-gradient(135deg, rgba(0, 20, 40, 0.8) 0%, rgba(20, 0, 40, 0.8) 100%);
+            border-radius: 25px;
+            padding: 2.5rem;
             position: relative;
-        }
-
-        .level-badge::before {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-            z-index: -1;
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .level-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .level-text {
-            font-size: 0.8rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .terms-wrapper {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .terms-wrapper:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
-        }
-
-        .term-card {
-            position: relative;
-            padding: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
-            cursor: pointer;
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.5s ease;
+            animation: slideUp 0.8s ease backwards;
+            backdrop-filter: blur(10px);
         }
 
-        .term-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s ease;
-        }
+        .level-card:nth-child(1) { animation-delay: 0.1s; }
+        .level-card:nth-child(2) { animation-delay: 0.2s; }
+        .level-card:nth-child(3) { animation-delay: 0.3s; }
+        .level-card:nth-child(4) { animation-delay: 0.4s; }
 
-        .term-card:hover::before {
-            left: 100%;
-        }
-
-        .term-card:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
-        }
-
-        .term-card.disabled {
-            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        .term-card.disabled:hover {
-            transform: none;
-            box-shadow: none;
-        }
-
-        .term-card.disabled::before {
-            display: none;
-        }
-
-        .term-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .term-title {
-            color: white;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .term-status {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.85rem;
-            font-weight: 400;
-        }
-
-        .term-link {
-            position: absolute;
-            inset: 0;
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: auto;
-            padding-top: 3rem;
-            animation: fadeIn 1.5s ease;
-        }
-
-        .footer-text {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: white;
-            font-weight: 500;
-            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
-            padding: 1.2rem 2.5rem;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50px;
-            backdrop-filter: blur(15px);
-            display: inline-block;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        @keyframes fadeInDown {
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(-30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -293,14 +251,301 @@
             }
         }
 
-        @keyframes slideIn {
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 255, 255, 0.3), transparent 30%);
+            animation: rotate 6s linear infinite;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .level-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .level-card::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(135deg, rgba(0, 20, 40, 0.95) 0%, rgba(20, 0, 40, 0.95) 100%);
+            border-radius: 23px;
+            z-index: 0;
+        }
+
+        .level-card:hover {
+            border-color: rgba(0, 255, 255, 0.6);
+            box-shadow:
+                0 0 50px rgba(0, 255, 255, 0.3),
+                inset 0 0 30px rgba(0, 255, 255, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .level-header {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .level-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #000;
+            position: relative;
+            overflow: hidden;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.8); }
+        }
+
+        .level-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            from { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            to { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .level-info {
+            flex: 1;
+        }
+
+        .level-title {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00ffff;
+            margin-bottom: 0.3rem;
+            letter-spacing: 2px;
+        }
+
+        .level-subtitle {
+            font-size: 0.9rem;
+            color: rgba(0, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .terms-grid {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .term-item {
+            position: relative;
+            padding: 1.8rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .term-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(180deg, #00ffff, #ff00ff);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .term-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .term-item:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border-color: rgba(0, 255, 255, 0.6);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .term-item.disabled {
+            background: linear-gradient(135deg, rgba(60, 60, 80, 0.05) 0%, rgba(40, 40, 60, 0.05) 100%);
+            border-color: rgba(100, 100, 120, 0.3);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .term-item.disabled:hover {
+            transform: none;
+            box-shadow: none;
+            background: linear-gradient(135deg, rgba(60, 60, 80, 0.05) 0%, rgba(40, 40, 60, 0.05) 100%);
+            border-color: rgba(100, 100, 120, 0.3);
+        }
+
+        .term-item.disabled::before {
+            display: none;
+        }
+
+        .term-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .term-emoji {
+            font-size: 2.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .term-item:hover .term-emoji {
+            animation: spin 0.6s ease;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            to { transform: rotate(360deg) scale(1); }
+        }
+
+        .term-details {
+            flex: 1;
+        }
+
+        .term-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+        }
+
+        .term-status {
+            font-size: 0.85rem;
+            color: rgba(0, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .term-item.disabled .term-status {
+            color: rgba(150, 150, 170, 0.6);
+        }
+
+        .term-arrow {
+            font-size: 1.5rem;
+            color: #00ffff;
+            transition: transform 0.4s ease;
+        }
+
+        .term-item:hover .term-arrow {
+            transform: translateX(10px);
+        }
+
+        .term-item.disabled .term-arrow {
+            color: rgba(150, 150, 170, 0.6);
+        }
+
+        .term-link {
+            position: absolute;
+            inset: 0;
+            text-decoration: none;
+            z-index: 2;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 4rem;
+            animation: fadeIn 1.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-text {
+            font-family: 'Exo 2', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #fff;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            padding: 1.5rem 3.5rem;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            display: inline-block;
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .footer-text::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            animation: sweep 3s infinite;
+        }
+
+        @keyframes sweep {
+            to { transform: translateX(100%); }
+        }
+
+        .footer-text:hover {
+            border-color: rgba(0, 255, 255, 1);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateX(-50px);
+                transform: translateY(-50px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
@@ -309,64 +554,124 @@
             to { opacity: 1; }
         }
 
-        @media (max-width: 968px) {
-            .level-section,
-            .level-section:nth-child(even) {
-                flex-direction: column;
-            }
-
-            .level-badge {
-                width: 100px;
-                height: 100px;
-            }
-
-            .level-number {
-                font-size: 2rem;
-            }
-
-            .terms-wrapper {
-                width: 100%;
-            }
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: fadeIn 1s ease, floatButton 3s ease-in-out infinite;
         }
 
-        @media (max-width: 640px) {
-            .container {
-                padding: 2rem 1.5rem;
-            }
+        @keyframes floatButton {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
 
-            .header {
-                margin-bottom: 3rem;
-            }
+        .whatsapp-button {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
+        .whatsapp-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.4), transparent 30%);
+            animation: rotate 3s linear infinite;
+        }
+
+        .whatsapp-button::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.9);
+        }
+
+        .whatsapp-icon {
+            position: relative;
+            z-index: 1;
+            font-size: 32px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        @media (max-width: 768px) {
             .timeline-container {
+                grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            .terms-wrapper {
-                grid-template-columns: 1fr;
-                padding: 1.5rem;
+            .level-card {
+                padding: 2rem;
+            }
+
+            .level-header {
                 gap: 1rem;
+                margin-bottom: 2rem;
             }
 
-            .term-card {
-                padding: 1.5rem;
-            }
-
-            .term-icon {
+            .level-icon {
+                width: 70px;
+                height: 70px;
                 font-size: 2rem;
             }
 
-            .term-title {
-                font-size: 1.1rem;
+            .level-title {
+                font-size: 1.5rem;
             }
 
-            .level-badge {
-                width: 90px;
-                height: 90px;
+            .term-item {
+                padding: 1.5rem;
             }
 
-            .level-number {
-                font-size: 1.8rem;
+            .term-emoji {
+                font-size: 2rem;
+            }
+
+            .term-name {
+                font-size: 1.3rem;
+            }
+
+            .title {
+                letter-spacing: 8px;
+            }
+
+            .subtitle {
+                letter-spacing: 3px;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-button {
+                width: 55px;
+                height: 55px;
+            }
+
+            .whatsapp-icon {
+                font-size: 28px;
             }
         }
     </style>
@@ -380,99 +685,174 @@
         <div class="bubble"></div>
     </div>
 
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="scan-line"></div>
+
     <div class="container">
         <div class="header">
-            <h1 class="title">Junas Archive</h1>
+            <div class="title-wrapper">
+                <h1 class="title">JUNAS ARCHIVE</h1>
+            </div>
             <p class="subtitle">Academic Resources Collection</p>
         </div>
 
         <div class="timeline-container">
             <!-- Level 1 -->
-            <div class="level-section">
-                <div class="level-badge">
-                    <div class="level-number">01</div>
-                    <div class="level-text">Level</div>
-                </div>
-                <div class="terms-wrapper">
-                    <div class="term-card">
-                        <a href="https://mega.nz/folder/v4ZnBBZT#mWQyKppqWRXFMst_gqR2uQ" class="term-link" target="_blank"></a>
-                        <div class="term-icon">📚</div>
-                        <div class="term-title">Term 1</div>
-                        <div class="term-status">Available</div>
+            <div class="level-card">
+                <div class="level-header">
+                    <div class="level-icon">01</div>
+                    <div class="level-info">
+                        <div class="level-title">LEVEL ONE</div>
+                        <div class="level-subtitle">Foundation Year</div>
                     </div>
-                    <div class="term-card">
+                </div>
+                <div class="terms-grid">
+                    <div class="term-item">
+                        <a href="https://mega.nz/folder/v4ZnBBZT#mWQyKppqWRXFMst_gqR2uQ" class="term-link" target="_blank"></a>
+                        <div class="term-content">
+                            <div class="term-emoji">📚</div>
+                            <div class="term-details">
+                                <div class="term-name">Term 1</div>
+                                <div class="term-status">Available Now</div>
+                            </div>
+                            <div class="term-arrow">→</div>
+                        </div>
+                    </div>
+                    <div class="term-item">
                         <a href="https://mega.nz/folder/flwiSTab#lHXTwRvjZ95qbSIIWeE1SA" class="term-link" target="_blank"></a>
-                        <div class="term-icon">📖</div>
-                        <div class="term-title">Term 2</div>
-                        <div class="term-status">Available</div>
+                        <div class="term-content">
+                            <div class="term-emoji">📖</div>
+                            <div class="term-details">
+                                <div class="term-name">Term 2</div>
+                                <div class="term-status">Available Now</div>
+                            </div>
+                            <div class="term-arrow">→</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Level 2 -->
-            <div class="level-section">
-                <div class="level-badge">
-                    <div class="level-number">02</div>
-                    <div class="level-text">Level</div>
-                </div>
-                <div class="terms-wrapper">
-                    <div class="term-card disabled">
-                        <div class="term-icon">🔒</div>
-                        <div class="term-title">Term 1</div>
-                        <div class="term-status">Coming Soon</div>
+            <div class="level-card">
+                <div class="level-header">
+                    <div class="level-icon">02</div>
+                    <div class="level-info">
+                        <div class="level-title">LEVEL TWO</div>
+                        <div class="level-subtitle">Intermediate Year</div>
                     </div>
-                    <div class="term-card disabled">
-                        <div class="term-icon">🔒</div>
-                        <div class="term-title">Term 2</div>
-                        <div class="term-status">Coming Soon</div>
+                </div>
+                <div class="terms-grid">
+                    <div class="term-item">
+                        <a href="https://mega.nz/folder/fsxxhKbT#sS8BkFO6OzNn6WOhHaEbYw" class="term-link" target="_blank"></a>
+                        <div class="term-content">
+                            <div class="term-emoji">📚</div>
+                            <div class="term-details">
+                                <div class="term-name">Term 1</div>
+                                <div class="term-status">Available Now</div>
+                            </div>
+                            <div class="term-arrow">→</div>
+                        </div>
+                    </div>
+                    <div class="term-item disabled">
+                        <div class="term-content">
+                            <div class="term-emoji">🔒</div>
+                            <div class="term-details">
+                                <div class="term-name">Term 2</div>
+                                <div class="term-status">Coming Soon</div>
+                            </div>
+                            <div class="term-arrow">→</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Level 3 -->
-            <div class="level-section">
-                <div class="level-badge">
-                    <div class="level-number">03</div>
-                    <div class="level-text">Level</div>
-                </div>
-                <div class="terms-wrapper">
-                    <div class="term-card disabled">
-                        <div class="term-icon">🔒</div>
-                        <div class="term-title">Term 1</div>
-                        <div class="term-status">Coming Soon</div>
+            <div class="level-card">
+                <div class="level-header">
+                    <div class="level-icon">03</div>
+                    <div class="level-info">
+                        <div class="level-title">LEVEL THREE</div>
+                        <div class="level-subtitle">Advanced Year</div>
                     </div>
-                    <div class="term-card disabled">
-                        <div class="term-icon">🔒</div>
-                        <div class="term-title">Term 2</div>
-                        <div class="term-status">Coming Soon</div>
+                </div>
+                <div class="terms-grid">
+                    <div class="term-item disabled">
+                        <div class="term-content">
+                            <div class="term-emoji">🔒</div>
+                            <div class="term-details">
+                                <div class="term-name">Term 1</div>
+                                <div class="term-status">Coming Soon</div>
+                            </div>
+                            <div class="term-arrow">→</div>
+                        </div>
+                    </div>
+                    <div class="term-item disabled">
+                        <div class="term-content">
+                            <div class="term-emoji">🔒</div>
+                            <div class="term-details">
+                                <div class="term-name">Term 2</div>
+                                <div class="term-status">Coming Soon</div>
+                            </div>
+                            <div class="term-arrow">→</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Level 4 -->
-            <div class="level-section">
-                <div class="level-badge">
-                    <div class="level-number">04</div>
-                    <div class="level-text">Level</div>
-                </div>
-                <div class="terms-wrapper">
-                    <div class="term-card disabled">
-                        <div class="term-icon">🔒</div>
-                        <div class="term-title">Term 1</div>
-                        <div class="term-status">Coming Soon</div>
+            <div class="level-card">
+                <div class="level-header">
+                    <div class="level-icon">04</div>
+                    <div class="level-info">
+                        <div class="level-title">LEVEL FOUR</div>
+                        <div class="level-subtitle">Final Year</div>
                     </div>
-                    <div class="term-card disabled">
-                        <div class="term-icon">🔒</div>
-                        <div class="term-title">Term 2</div>
-                        <div class="term-status">Coming Soon</div>
+                </div>
+                <div class="terms-grid">
+                    <div class="term-item disabled">
+                        <div class="term-content">
+                            <div class="term-emoji">🔒</div>
+                            <div class="term-details">
+                                <div class="term-name">Term 1</div>
+                                <div class="term-status">Coming Soon</div>
+                            </div>
+                            <div class="term-arrow">→</div>
+                        </div>
+                    </div>
+                    <div class="term-item disabled">
+                        <div class="term-content">
+                            <div class="term-emoji">🔒</div>
+                            <div class="term-details">
+                                <div class="term-name">Term 2</div>
+                                <div class="term-status">Coming Soon</div>
+                            </div>
+                            <div class="term-arrow">→</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <p class="footer-text">Best wishes from JUNAYED JIHAD</p>
+            <p class="footer-text">BEST WISHES FROM JUNAYED JIHAD</p>
         </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/+8801516570309" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
+            <span class="whatsapp-icon">✉️</span>
+        </a>
     </div>
 </body>
 </html>
