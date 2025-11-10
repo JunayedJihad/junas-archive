@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Junas Archive - Academic Resources Collection | Study Materials & Notes</title>
-    <link rel="shortcut icon" href="./books.png" type="image/x-icon">
-    <meta name="theme-color" content="#00ffff">
-    <meta name="google-site-verification" content="UIjp9tsxiLkb7FnHICG_Io62VqYojFejQ9e1xkOZFhs" />
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Junas Archive offers comprehensive academic resources for Level 1-4 students. Access study materials, lecture notes, past papers, and exam preparation resources.">
-    <meta name="keywords" content="junas archive, junasarchive, academic resources, study materials, lecture notes, past papers, level 1, level 2, level 3, level 4, exam preparation, student resources">
+    <meta name="keywords" content="junas archive, academic resources, study materials, lecture notes, past papers, level 1, level 2, level 3, level 4, exam preparation, student resources">
     <meta name="author" content="Junayed Jihad">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://junas-archive.vercel.app/">
+
+    <!-- Open Graph Meta Tags (Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://junas-archive.vercel.app/">
+    <meta property="og:title" content="Junas Archive - Academic Resources Collection">
+    <meta property="og:description" content="Access comprehensive academic resources for Level 1-4. Study materials, notes, and past papers all in one place.">
+    <meta property="og:site_name" content="Junas Archive">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://junas-archive.vercel.app/">
+    <meta name="twitter:title" content="Junas Archive - Academic Resources Collection">
+    <meta name="twitter:description" content="Access comprehensive academic resources for Level 1-4. Study materials, notes, and past papers all in one place.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./books.png">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#00ffff">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
@@ -32,6 +48,7 @@
             position: relative;
             overflow-x: hidden;
             color: #fff;
+            max-width: 100vw;
         }
 
         .animated-bg {
@@ -121,6 +138,7 @@
             max-width: 1500px;
             margin: 0 auto;
             padding: 3rem 2rem;
+            padding-right: 2rem;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -128,7 +146,7 @@
 
         .header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 3rem;
             animation: fadeInDown 1.2s ease;
             position: relative;
         }
@@ -198,7 +216,7 @@
             color: #00ffff;
             font-weight: 500;
             letter-spacing: 6px;
-            text-transform: uppercase;
+            /* text-transform: uppercase; */
             position: relative;
             display: inline-block;
             padding: 0 2rem;
@@ -231,6 +249,8 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
+            justify-items: center;
+            width: 100%;
         }
 
         .level-card {
@@ -243,6 +263,8 @@
             transition: all 0.5s ease;
             animation: slideUp 0.8s ease backwards;
             backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 450px;
         }
 
         .level-card:nth-child(1) { animation-delay: 0.1s; }
@@ -504,8 +526,8 @@
 
         .footer {
             text-align: center;
-            margin-top: -70px;
-            padding-top: 4rem;
+            margin-top: auto;
+            /* padding-top: 4rem; */
             animation: fadeIn 1.5s ease;
             position: relative;
             z-index: 1;
@@ -568,7 +590,7 @@
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
-            right: 60px;
+            right: 30px;
             z-index: 1000;
             animation: fadeIn 1s ease, floatButton 3s ease-in-out infinite;
         }
@@ -665,7 +687,7 @@
             background-clip: text;
             letter-spacing: 10px;
             text-transform: uppercase;
-            animation: gradientShift 3s ease infinite, pulseText 2s ease-in-out infinite;
+            animation: gradientShift 3s ease infinite, pulseText 1s ease-in-out infinite;
         }
 
         @keyframes pulseText {
@@ -713,7 +735,7 @@
             height: 80px;
             background: radial-gradient(circle, rgba(0, 255, 255, 0.3), transparent);
             border-radius: 50%;
-            animation: pulseCircle 2s ease-in-out infinite;
+            animation: pulseCircle 1s ease-in-out infinite;
         }
 
         @keyframes pulseCircle {
@@ -759,7 +781,7 @@
             width: 0%;
             background: linear-gradient(90deg, #00ffff, #ff00ff);
             border-radius: 2px;
-            animation: loadProgress 2s ease-in-out forwards;
+            animation: loadProgress 1s ease-in-out forwards;
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
         }
 
@@ -896,7 +918,7 @@
             <div class="loading-particle"></div>
         </div>
         <div class="loader-container">
-            <!-- <div class="loader-logo">Junas Archive</div> -->
+            <!-- <div class="loader-logo">JUNAS</div> -->
             <div class="loader-ring">
                 <div class="loader-circle"></div>
             </div>
@@ -931,9 +953,9 @@
     <div class="container">
         <div class="header">
             <div class="title-wrapper">
-                <h1 class="title">Junas Archive</h1>
+                <h1 class="title">JUNAS ARCHIVE</h1>
             </div>
-            <p class="subtitle">Academic Resources Collection</p>
+            <p class="subtitle">NCE Academic Resources</p>
         </div>
 
         <div class="timeline-container">
@@ -1074,7 +1096,7 @@
         </div>
 
         <div class="footer">
-            <p class="footer-text">Best wishes from JUNAYED JIHAD</p>
+            <p class="footer-text">BEST WISHES FROM JUNAYED JIHAD</p>
         </div>
     </div>
 
@@ -1090,7 +1112,7 @@
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.getElementById('loadingScreen').classList.add('hidden');
-            }, 800);
+            }, 1000);
         });
     </script>
 </body>
