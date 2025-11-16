@@ -736,8 +736,8 @@ body {
 }
 
 .whatsapp-button {
-     width: 65px;
-     height: 65px;
+     width: 60px;
+     height: 60px;
      /* background: linear-gradient(135deg, #00ffff, #ff00ff); */
      border-radius: 50%;
      display: flex;
@@ -778,7 +778,8 @@ body {
 .whatsapp-icon {
      position: relative;
      z-index: 1;
-     font-size: 32px;
+     width: 35px;
+     height: 35px;
      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
